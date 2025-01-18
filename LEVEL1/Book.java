@@ -2,7 +2,12 @@ public class Book {
     String title;
     String author;
     int price;
-    // Constructor is declared
+    Book(){
+      this.title="Unknown title";
+      this.author="Unknown author";
+      this.price=0;
+    }
+    //Prameterised Constructor is declared
     Book( String title,String author,int price){
        this.title=title;
        this.author=author;
@@ -16,7 +21,12 @@ public class Book {
     }
 
     public static void main(String[] args) {
+        Book constrBook= new Book();
         Book details = new Book("The Monk who sold his Ferrari","Robin Sharma",200);
+        System.out.println("Book details using default constructor");
+        constrBook.displayBookDetails();
+
+        System.out.println("Book details using Parametreised constructor");
         details.displayBookDetails();
     }
     
