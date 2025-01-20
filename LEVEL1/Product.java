@@ -1,36 +1,60 @@
+package LEVEL1;
+
 public class Product {
-    private String productName;
-    private double price;
-    private static int totalProducts = 0;  // Class variable shared among all instances
+    // Static variable shared across all products
+     static double discount = 0.0;  // Discount percentage
 
-    // Constructor to initialize product details and increment totalProducts
-    public Product(String productName, double price) {
-        this.productName = productName;
+    // Final variable for product ID, assigned once and cannot be changed
+     final int productID;
+
+    // Instance variables for product details
+     String productName;
+     double price;
+     int quantity;
+
+    // Constructor to initialize product details
+    public Product(int productID, String productName, double price, int quantity) {
+        this.productID = productID;  // Assigning to the final variable
+        this.productName = productName;  // Using 'this' to resolve ambiguity
         this.price = price;
-        totalProducts++;  // Increment total products when a new product is created
+        this.quantity = quantity;
     }
 
-    // Instance method to display product details
+    // Static method to update the discount percentage
+    public static void updateDiscount(double newDiscount) {
+        discount = newDiscount;
+    }
+
+    // Method to calculate and display the final price after discount
     public void displayProductDetails() {
-        System.out.println("Product Name: " + productName);
-        System.out.println("Price: " + price);
+        if (this instanceof Product) {
+            double finalPrice = price - (price * discount / 100);
+            System.out.println("Product ID: " + productID);
+            System.out.println("Product Name: " + productName);
+            System.out.println("Original Price: " + price);
+            System.out.println("Discount: " + discount + "%");
+            System.out.println("Final Price: " + finalPrice);
+            System.out.println("Quantity: " + quantity);
+        } else {
+            System.out.println("The object is not an instance of Product.");
+        }
     }
 
-    // Class method to display total number of products
-    public static void displayTotalProducts() {
-        System.out.println("Total Products Created: " + totalProducts);
-    }
-
+    // Main method to demonstrate the features
     public static void main(String[] args) {
-        // Creating product instances
-        Product product1 = new Product("Laptop", 999.99);
-        Product product2 = new Product("Smartphone", 699.99);
+        // Creating Product objects
+        Product product1 = new Product(101, "Laptop", 1000.0, 2);
+        Product product2 = new Product(102, "Smartphone", 500.0, 5);
 
-        // Displaying details of each product
+        // Displaying product details before applying discount
         product1.displayProductDetails();
         product2.displayProductDetails();
 
-        // Displaying total number of products created
-        Product.displayTotalProducts();
+        // Updating the discount
+        Product.updateDiscount(10.0);  // 10% discount
+
+        // Displaying product details after applying discount
+        product1.displayProductDetails();
+        product2.displayProductDetails();
     }
 }

@@ -1,33 +1,46 @@
+package LEVEL1;
+
 public class Book {
+    static String libraryName="BS LIBRARY";
+
     String title;
     String author;
-    int price;
-    Book(){
-      this.title="Unknown title";
-      this.author="Unknown author";
-      this.price=0;
+    private int isbn;
+
+   // Constructor to initialise the details of book
+    Book(String title , String author,int isbn){
+        this.title=title;
+        this.author=author;
+        this.isbn=isbn;
     }
-    //Prameterised Constructor is declared
-    Book( String title,String author,int price){
-       this.title=title;
-       this.author=author;
-       this.price=price;
-    }
-    // Method to display details of book
-    void displayBookDetails(){
-        System.out.println("Title of Book : "+title);
-        System.out.println("Author of Book : "+author);
-        System.out.println("Price of Book : "+price);
+
+    //Method to display library name and book details
+    public  void displayLibarryName(){
+        if (this instanceof Book){
+        System.out.println("Library name is :"+libraryName);
+        System.out.println("Title is :"+title);
+        System.out.println("Author is :"+author);
+        System.out.println("Book no. is :"+isbn);
+        }
+        else {
+            System.out.println("This is not an instance of Book class");
+        }
     }
 
     public static void main(String[] args) {
-        Book constrBook= new Book();
-        Book details = new Book("The Monk who sold his Ferrari","Robin Sharma",200);
-        System.out.println("Book details using default constructor");
-        constrBook.displayBookDetails();
+        Book book1 = new Book("Ramcharit Manas","Tulsidas ji",01);//First Book object// is created
+        Book book2 = new Book("Geeta","Veda Vyasa",02);//Second book object is created
 
-        System.out.println("Book details using Parametreised constructor");
-        details.displayBookDetails();
+        //Displaying the book details by calling the function using objects
+        book1.displayLibarryName();
+        book2.displayLibarryName();
+
+        //Changing the library name
+        Book.libraryName="Kanha Library";
+
+        //Again displaying the details
+        book1.displayLibarryName();
+        book2.displayLibarryName();
+
     }
-    
 }

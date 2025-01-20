@@ -1,40 +1,48 @@
+package LEVEL1;
+
 public class Vehicle {
-     String ownerName;
-     String vehicleType;
-     static double registrationFee = 100.0;  
+    static int registrationFee=10;
 
-    // Constructor to initialize vehicle details
-    public Vehicle(String ownerName, String vehicleType) {
-        this.ownerName = ownerName;
-        this.vehicleType = vehicleType;
+    String ownerName;
+    String vehicleType;
+    final String registrationNumber;
+
+    // Constructor to initialise the details of vehicle
+    Vehicle(String ownerName,String vehicleType,String registrationNumber){
+        this.ownerName=ownerName;
+        this.vehicleType=vehicleType;
+        this.registrationNumber=registrationNumber;
     }
 
-    // Instance method to display vehicle details
-    public void displayVehicleDetails() {
-        System.out.println("Owner Name: " + ownerName);
-        System.out.println("Vehicle Type: " + vehicleType);
-        System.out.println("Registration Fee: $" + registrationFee);
+    static void updateRegistrationFee(int newFee){
+        registrationFee=newFee;
     }
 
-    // Class method to update the registration fee
-    public static void updateRegistrationFee(double newFee) {
-        registrationFee = newFee;
+    void displayDetailsOfVehicle(){
+        if (this instanceof Vehicle) {
+            System.out.println("Owner Name :" + ownerName);
+            System.out.println("Vehicle Type :" + vehicleType);
+            System.out.println("Registration Number :" + registrationNumber);
+            System.out.println("Registration Fees :" + registrationFee);
+        }
+        else{
+            System.out.println("This is not a instance of object");
+        }
     }
 
     public static void main(String[] args) {
-        // Creating vehicle instances
-        Vehicle vehicle1 = new Vehicle("John Doe", "Car");
-        Vehicle vehicle2 = new Vehicle("Jane Smith", "Motorcycle");
+        Vehicle vehicle1 = new Vehicle("Sanjay ","Motorcycle","CG25T0903");
+        Vehicle vehicle2 = new Vehicle("Rohan ","Car","MP04T3000");
 
-        // Displaying vehicle details before updating the registration fee
-        vehicle1.displayVehicleDetails();
-        vehicle2.displayVehicleDetails();
+        vehicle1.displayDetailsOfVehicle();
+        vehicle2.displayDetailsOfVehicle();
 
-        // Updating the registration fee using the class method
-        Vehicle.updateRegistrationFee(120.0);
+        Vehicle.updateRegistrationFee(20);
 
-        // Displaying vehicle details after updating the registration fee
-        vehicle1.displayVehicleDetails();
-        vehicle2.displayVehicleDetails();
+        vehicle1.displayDetailsOfVehicle();
+        vehicle2.displayDetailsOfVehicle();
+
     }
+
+
 }
