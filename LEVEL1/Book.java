@@ -5,7 +5,7 @@ public class Book {
 
     String title;
     String author;
-    private int isbn;
+    final int isbn;
 
    // Constructor to initialise the details of book
     Book(String title , String author,int isbn){
